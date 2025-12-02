@@ -1,0 +1,6 @@
+{...}:
+{
+  imports = [
+    ./start-contest.nix
+  ];
+}
