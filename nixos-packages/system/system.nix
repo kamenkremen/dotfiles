@@ -6,7 +6,6 @@
 
   # nix
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  #nixpkgs.config.allowUnfree = true;
     
   # locale
   time.timeZone = "Europe/Moscow";
@@ -44,7 +43,19 @@
   # fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    liberation_ttf
+    fira-code
+    fira-sans
+    fira-math
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts 
   ];
+
 
   # swap file
   swapDevices = [{

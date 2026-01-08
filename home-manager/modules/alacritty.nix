@@ -3,4 +3,4 @@
 programs.alacritty = {
     enable = true;
   };
-  }
+}

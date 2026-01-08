@@ -8,7 +8,6 @@ imports = [
 programs.nixvim = {
     enable = true;
 
-    # because wtf????
     plugins.lsp.servers.dockerls.enable = lib.mkForce false;
 
     plugins.harpoon.enable = true;
@@ -28,7 +27,7 @@ programs.nixvim = {
       scrolloff = 8;
       signcolumn = "yes";
       updatetime = 50;
-      colorcolumn = "120";
+      colorcolumn = "81";
       clipboard = {
           name = "wl-clipboard";
           copy = {
@@ -53,19 +52,6 @@ programs.nixvim = {
     plugins.typst-preview.enable = true;
     plugins.nvim-autopairs.enable = true;
     plugins.crates-nvim.enable = true;
-
-    /*colorschemes.gruvbox = {
-        enable = true;
-        settings = {
-            diagnostic = {
-                virtual_text = true;
-                underline = true;
-            };
-            undercurl = true;
-            underline = true;
-            bold = true;
-        };
-    };*/
     colorschemes.tokyonight = {
     	enable = true;
 	settings = {
@@ -115,7 +101,5 @@ programs.nixvim = {
 
         nixvimInjections = true;
     };
-
-
   };
 }

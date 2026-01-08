@@ -18,7 +18,6 @@ programs.nixvim = {
           diagnostics.enable = true;
 
           inlayHints = {
-            # минимально полезные хинты; можно расширить по вкусу
             lifetimeElisionHints = { enable = "always"; useParameterNames = true; };
             parameterHints = { enable = true; };
             typeHints = { enable = true; };
@@ -32,10 +31,10 @@ programs.nixvim = {
             { name = "git"; }
             { name = "nvim_lsp"; }
             {
-                name = "buffer"; # text within current buffer
+                name = "buffer";
             }
             {
-                name = "path"; # file system paths
+                name = "path";
             }
             {
                 name = "crates";

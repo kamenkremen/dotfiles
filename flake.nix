@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -15,12 +16,15 @@
     }; 
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, stylix, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixvim, stylix, ... } @inputs:
     let
       system = "x86_64-linux";
     in {
       nixosConfigurations.nixsos = nixpkgs.lib.nixosSystem {
         inherit system;
+	specialArgs = { inherit inputs; };
+
+
         modules = [
 	  stylix.nixosModules.stylix
           { nixpkgs.config.allowUnfree = true; }
@@ -32,7 +36,7 @@
           {
             home-manager.useGlobalPkgs = true;
             #home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit nixvim; };
+            home-manager.extraSpecialArgs = { inherit inputs nixvim; };
             home-manager.users.kamen = import ./home-manager/home.nix;
 	    home-manager.backupFileExtension = "backup"; 
           }

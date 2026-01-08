@@ -1,4 +1,10 @@
-{ config, pkgs, lib, nixvim, stylix, ... }:
+{ config, pkgs, inputs, lib, nixvim, stylix, ... }:
+let
+  pkgs-stable = import inputs.nixpkgs-stable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
+in
 {
   imports = [
     nixvim.homeManagerModules.nixvim
@@ -48,7 +54,7 @@
 
     # gui / apps
     firefox vscode obs-studio
-    telegram-desktop vesktop discord revolt-desktop
+    pkgs-stable.telegram-desktop vesktop discord revolt-desktop
     kdePackages.okular zathura libreoffice gimp
     google-chrome 
     openvpn brightnessctl helvum pavucontrol

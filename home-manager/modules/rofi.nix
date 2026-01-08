@@ -9,8 +9,5 @@
 	extraConfig = {
 	  dpi = 144;
 	};
-	#dpi = 144;
-#	sidebar-mode: false;
-#	hover-select: false;
   };
 }
