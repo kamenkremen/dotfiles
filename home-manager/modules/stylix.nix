@@ -3,6 +3,7 @@
   stylix = {
     targets = {
       alacritty.enable = true;
+      ghostty.enable = true;
       vesktop.enable = true;
       dunst.enable = true;
       wofi.enable = true;

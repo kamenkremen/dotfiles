@@ -4,6 +4,7 @@ imports = [
   ./lsp
   ./diagnostics.nix
   ./keymaps.nix
+  ./telescope.nix
 ];
 programs.nixvim = {
     enable = true;

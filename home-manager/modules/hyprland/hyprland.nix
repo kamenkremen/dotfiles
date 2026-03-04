@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
 
 {
+  wayland.windowManager.hyprland.systemd.variables = ["--all"];
   wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {
       "$mainMod"    = "SUPER";
-      "$terminal"    = "alacritty";
+      "$terminal"    = "ghostty";
       "$fileManager" = "dolphin";
       "$menu"        = "rofi --show drun";
 
@@ -17,6 +18,9 @@
       env = [
         ("XCURSOR_SIZE," + builtins.toString config.stylix.cursor.size)
         ("HYPRCURSOR_SIZE," + builtins.toString config.stylix.cursor.size)
+	    "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
       ];
       
 

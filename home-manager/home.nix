@@ -45,7 +45,7 @@ in
     gcc rustc cargo rustfmt clippy rust-analyzer
     pkgs.rust.packages.stable.rustPlatform.rustLibSrc
     maven nodejs yarn-berry yarn2nix node2nix
-    dpkg rpm fakeroot
+    dpkg rpm fakeroot ripgrep fd
 
     # dotnet
     dotnetCorePackages.dotnet_9.sdk
@@ -83,11 +83,12 @@ in
     nerd-fonts.jetbrains-mono
     nerd-fonts.hack
 
-    # Шрифты для эмодзи и CJK все еще полезны
     noto-fonts-emoji
     noto-fonts-cjk-sans
 	
     update-resolv-conf
+
+    xdg-desktop-portal-gtk
   ];
 
   programs.vesktop.enable = true;
@@ -97,7 +98,7 @@ in
     "text/html" = "firefox.desktop";
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
-    "x-scheme-handler/about" = "firefox.desktop"; # Для внутренних страниц
+    "x-scheme-handler/about" = "firefox.desktop";
     "x-scheme-handler/unknown" = "firefox.desktop";
   }; 
 }

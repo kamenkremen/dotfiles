@@ -7,5 +7,6 @@
     ./stylix.nix
     ./alacritty.nix
     ./rofi.nix
+    ./ghostty.nix
   ];
 }
