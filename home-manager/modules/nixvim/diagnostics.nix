@@ -1,7 +1,7 @@
 {...}:
 {
   programs.nixvim = {
-    diagnostics = {
+    diagnostic.settings = {
         enable = true;
         virtualText = {
             enable = true;

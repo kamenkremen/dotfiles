@@ -95,8 +95,9 @@
 
       "exec-once" = [
         "waybar &"
+        "dunst"
+        "nm-applet"
       ];
-
       bind = [
         "$mainMod SHIFT, right, resizeactive, 10 0"
         "$mainMod SHIFT, left, resizeactive, -10 0"

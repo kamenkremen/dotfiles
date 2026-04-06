@@ -65,6 +65,7 @@ programs.nixvim = {
 
     plugins.luasnip.enable = true;
     plugins.friendly-snippets.enable = true;
+    plugins.web-devicons.enable = true;
 
     opts.completeopt = "menu,menuone,noselect";
   };

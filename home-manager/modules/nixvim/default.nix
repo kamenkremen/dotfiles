@@ -47,12 +47,12 @@ programs.nixvim = {
       };
     };
 
-    extraConfigLua = '' -- Автоматическое создание solution при первом запуске
+    extraConfigLua = '' 
   if vim.fn.filereadable("solution") == 0 and vim.fn.filereadable("main.cpp") == 1 and vim.fn.filereadable("output.out") == 1 and vim.fn.filereadable("input.in") == 1 then vim.cmd("!touch solution && chmod +x solution") end '';
 
     plugins.typst-preview.enable = true;
     plugins.nvim-autopairs.enable = true;
-    plugins.crates-nvim.enable = true;
+    plugins.crates.enable = true;
     colorschemes.tokyonight = {
     	enable = true;
 	settings = {
@@ -69,7 +69,7 @@ programs.nixvim = {
 
     plugins.lualine = {
         enable = true;
-        sections = {
+        settings.sections = {
             lualine_b = [
                 "diagnostics"
                 "diff"
@@ -94,6 +94,7 @@ programs.nixvim = {
             latex
             cpp
             go
+            c
         ];
 
         settings = {

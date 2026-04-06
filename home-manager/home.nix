@@ -7,10 +7,10 @@ let
 in
 {
   imports = [
-    nixvim.homeManagerModules.nixvim
+    nixvim.homeModules.nixvim
     ./modules
   ];
-  
+
   programs.home-manager.enable = true;
   home.username = "kamen";
   home.homeDirectory = "/home/kamen";
@@ -21,26 +21,16 @@ in
   programs.zsh.enable = true;
 
   programs.waybar.enable = true;
-  services.dunst.enable = true;
+  services.dunst.enable = true; 
 
 
   programs.wofi.enable = true;
   programs.btop.enable = true;
   programs.zathura.enable = true;
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    settings = {
-      exec-once = [
-        "swww init"
-        "nm-applet --indicator"
-        "dunst"
-      ];
-    };
-  };
-
   home.packages = with pkgs; [
     # dev / utils
+    opencode spotify
     git wget neofetch unzip cmake
     gcc rustc cargo rustfmt clippy rust-analyzer
     pkgs.rust.packages.stable.rustPlatform.rustLibSrc

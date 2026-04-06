@@ -1,8 +1,10 @@
 {pkgs, ...}:
 {
 programs.nixvim = {
-    plugins.lsp.servers.rust-analyzer = {
+    plugins.lsp.servers.rust_analyzer = {
         enable = true;
+        installCargo = true;
+        installRustc = true;
         settings = {
         "rust-analyzer" = {
           cargo = {
