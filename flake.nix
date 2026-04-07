@@ -18,10 +18,15 @@
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixvim, stylix, ... } @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixvim, stylix, noctalia, ... } @inputs:
     let
       system = "x86_64-linux";
     in {
@@ -33,15 +38,15 @@
             modules = [
 	            stylix.nixosModules.stylix
                 { nixpkgs.config.allowUnfree = true; }
-                ./nixos-packages/hosts/nixsos
-                ./nixos-packages/shared
                 home-manager.nixosModules.home-manager
                 {
                     home-manager.useGlobalPkgs = true;
-                    home-manager.extraSpecialArgs = { inherit inputs nixvim; };
+                    home-manager.extraSpecialArgs = { inherit inputs nixvim nixpkgs-stable noctalia; };
                     home-manager.users.kamen = import ./home-manager/home.nix;
 	                home-manager.backupFileExtension = "backup"; 
                 }
+                ./nixos-packages/hosts/nixsos
+                ./nixos-packages/shared
             ];
           };
       };

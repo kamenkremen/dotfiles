@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, nixvim, stylix, ... }:
+{ config, pkgs, inputs, lib, nixvim, stylix, nixpkgs-stable, ... }:
 let
   pkgs-stable = import inputs.nixpkgs-stable {
     system = pkgs.system;
@@ -7,11 +7,11 @@ let
 in
 {
   imports = [
+    
     nixvim.homeModules.nixvim
     ./modules
   ];
 
-  programs.home-manager.enable = true;
   home.username = "kamen";
   home.homeDirectory = "/home/kamen";
   home.stateVersion = "24.11";
@@ -23,7 +23,6 @@ in
   programs.waybar.enable = true;
   services.dunst.enable = true; 
 
-
   programs.wofi.enable = true;
   programs.btop.enable = true;
   programs.zathura.enable = true;
@@ -31,10 +30,10 @@ in
   home.packages = with pkgs; [
     # dev / utils
     opencode spotify
-    git wget neofetch unzip cmake
+    git wget fastfetch unzip cmake
     gcc rustc cargo rustfmt clippy rust-analyzer
-    pkgs.rust.packages.stable.rustPlatform.rustLibSrc
-    maven nodejs yarn-berry yarn2nix node2nix
+    rust.packages.stable.rustPlatform.rustLibSrc
+    maven nodejs 
     dpkg rpm fakeroot ripgrep fd
 
     # dotnet
@@ -47,7 +46,7 @@ in
     pkgs-stable.telegram-desktop vesktop discord revolt-desktop
     kdePackages.okular zathura libreoffice gimp
     google-chrome 
-    openvpn brightnessctl helvum pavucontrol
+    openvpn brightnessctl crosspipe pavucontrol
     davinci-resolve
 
     # MINECRAFT
@@ -73,7 +72,7 @@ in
     nerd-fonts.jetbrains-mono
     nerd-fonts.hack
 
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     noto-fonts-cjk-sans
 	
     update-resolv-conf

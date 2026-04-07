@@ -7,6 +7,8 @@
     ./stylix.nix
     ./alacritty.nix
     ./rofi.nix
-    ./ghostty.nix
+    ./ghostty
+    ./zsh.nix
+    ./noctalia.nix
   ];
 }
