@@ -24,9 +24,14 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri = {
+        url = "github:sodiboo/niri-flake";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixvim, stylix, noctalia, ... } @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixvim, stylix, noctalia, niri, ... } @inputs:
     let
       system = "x86_64-linux";
     in {
@@ -45,6 +50,7 @@
                     home-manager.users.kamen = import ./home-manager/home.nix;
 	                home-manager.backupFileExtension = "backup"; 
                 }
+                niri.nixosModules.niri
                 ./nixos-packages/hosts/nixsos
                 ./nixos-packages/shared
             ];

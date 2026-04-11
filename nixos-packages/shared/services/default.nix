@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./bluetooth.nix
@@ -5,4 +6,5 @@
     ./postgres.nix
     ./flatpak.nix
   ];
+  programs.nix-ld.enable = true;
 }
