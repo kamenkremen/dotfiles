@@ -6,6 +6,7 @@ let
   };
 in
 {
+  disabledModules = [ "programs/niri.nix" ];
   imports = [
     
     nixvim.homeModules.nixvim
@@ -20,7 +21,7 @@ in
 
   programs.zsh.enable = true;
 
-  programs.waybar.enable = true;
+  #programs.waybar.enable = true;
   services.dunst.enable = true; 
 
   programs.wofi.enable = true;
@@ -29,11 +30,11 @@ in
 
   home.packages = with pkgs; [
     # dev / utils
-    opencode spotify
+    opencode spotify xwayland-satellite hyprpolkitagent
     git wget fastfetch unzip cmake
     gcc rustc cargo rustfmt clippy rust-analyzer
     rust.packages.stable.rustPlatform.rustLibSrc
-    maven nodejs 
+    maven nodejs qemu 
     dpkg rpm fakeroot ripgrep fd
 
     # dotnet
@@ -47,14 +48,15 @@ in
     kdePackages.okular zathura libreoffice gimp
     google-chrome 
     openvpn brightnessctl crosspipe pavucontrol
-    davinci-resolve
+    davinci-resolve qt6.qtimageformats
+    qt6.qtwayland grim slurp wf-recorder tesseract zbar
 
     # MINECRAFT
     prismlauncher lunar-client
 
     # wayland / desktop
     wl-clipboard swww hyprshot libnotify
-    kitty networkmanagerapplet
+    kitty networkmanagerapplet gpu-screen-recorder
 
     # printing/latex/typst
     texlive.combined.scheme-full typst tinymist

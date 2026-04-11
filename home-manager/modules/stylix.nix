@@ -12,7 +12,8 @@
         enable = true;
 	    profileNames = ["default"];
       };
-      noctalia-shell.enable = true;
+      # i want to configure widgets :^(
+      noctalia-shell.enable = false;
     };
     image = ./wallpapers/gruvbible.png;
     cursor = {

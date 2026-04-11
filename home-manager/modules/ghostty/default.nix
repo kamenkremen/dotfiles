@@ -5,6 +5,7 @@ let pkgs-stable = import inputs.nixpkgs-stable {
   };
 in {
     programs.ghostty = {
+        settings.gtk-single-instance = true;
         package = pkgs-stable.ghostty;
         enable = true;
         systemd.enable = true;

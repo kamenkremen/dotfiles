@@ -10,6 +10,7 @@
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
     ];
@@ -19,6 +20,9 @@
         default = [ "gtk" ];
         "org.freedesktop.impl.portal.Screencast" = [ "hyprland" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+      };
+      niri = {
+        default =[ "gnome" "gtk" ];
       };
     };
   };
