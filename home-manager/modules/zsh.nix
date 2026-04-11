@@ -8,9 +8,18 @@ programs.zsh = {
 
   shellAliases = {
     ll = "ls -l";
-    update = "sudo nixos-rebuild switch";
     expath = "export PATH=$(pwd):$PATH";
   };
   history.size = 10000;
+  # I HATE GUI POLKIT
+  initContent = ''
+      unset SSH_ASKPASS
+      update() {
+        local flake_dir="$HOME/dotfiles"
+        local target="''${1:-$(hostname)}"
+        echo "Rebuilding NixOS for host: $target"
+        sudo nixos-rebuild switch --flake "$flake_dir#$target"
+      }
+  '';
 };
 }

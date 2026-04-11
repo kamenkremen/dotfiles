@@ -27,6 +27,7 @@ in
   programs.wofi.enable = true;
   programs.btop.enable = true;
   programs.zathura.enable = true;
+  gtk.gtk4.theme = null;
 
   home.packages = with pkgs; [
     # dev / utils
@@ -55,7 +56,7 @@ in
     prismlauncher lunar-client
 
     # wayland / desktop
-    wl-clipboard swww hyprshot libnotify
+    wl-clipboard awww hyprshot libnotify
     kitty networkmanagerapplet gpu-screen-recorder
 
     # printing/latex/typst
@@ -63,7 +64,7 @@ in
 
     alsa-lib.dev
 
-    wineWowPackages.stable winetricks
+    wineWow64Packages.stable winetricks
 
     postgresql
 
