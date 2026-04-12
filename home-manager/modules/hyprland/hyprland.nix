@@ -1,33 +1,35 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   wayland.windowManager.hyprland.systemd.variables = ["--all"];
   wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {
-      "$mainMod"    = "SUPER";
-      "$terminal"    = "ghostty";
+      "$mainMod" = "SUPER";
+      "$terminal" = "ghostty";
       "$fileManager" = "dolphin";
-      "$menu"        = "rofi --show drun";
+      "$menu" = "rofi --show drun";
 
-      monitor = ["eDP-1,preferred,auto,auto"
-      		",preferred,auto,1,mirror,eDP-1"
-		];
+      monitor = [
+        "eDP-1,preferred,auto,auto"
+        ",preferred,auto,1,mirror,eDP-1"
+      ];
 
       env = [
-        ("XCURSOR_SIZE," + builtins.toString config.stylix.cursor.size)
-        ("HYPRCURSOR_SIZE," + builtins.toString config.stylix.cursor.size)
-	    "XDG_SESSION_TYPE,wayland"
+        ("XCURSOR_SIZE," + builtins.toString 24) #config.stylix.cursor.size)
+        ("HYPRCURSOR_SIZE," + builtins.toString 24) #config.stylix.cursor.size)
+        "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_CURRENT_DESKTOP,Hyprland"
       ];
-      
 
       general = {
-        gaps_in      = 10;
-        gaps_out     = 10;
-        border_size  = 2;
+        gaps_in = 10;
+        gaps_out = 10;
+        border_size = 2;
         layout = "dwindle";
       };
 
@@ -73,15 +75,15 @@
 
       misc = {
         force_default_wallpaper = -1;
-        disable_hyprland_logo   = true;
+        disable_hyprland_logo = true;
       };
 
       input = {
-        kb_layout  = "us, ru";
+        kb_layout = "us, ru";
         kb_variant = "";
-        kb_model   = "";
+        kb_model = "";
         kb_options = "grp:caps_toggle";
-        kb_rules   = "";
+        kb_rules = "";
         follow_mouse = 1;
         sensitivity = 0;
         touchpad = {
@@ -90,7 +92,10 @@
       };
 
       device = [
-        { name = "epic-mouse-v1"; sensitivity = "-0.5"; }
+        {
+          name = "epic-mouse-v1";
+          sensitivity = "-0.5";
+        }
       ];
 
       "exec-once" = [

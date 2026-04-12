@@ -1,49 +1,47 @@
-{ pkgs, ... }:
-
 {
   programs.niri.settings = {
     prefer-no-csd = true;
     workspaces = {
-        "1" = {};
-        "2" = {};
-        "3" = {};
-        "4" = {};
-        "5" = {};
-        "6" = {};
-        "7" = {};
-        "8" = {};
-        "9" = {};
+      "1" = {};
+      "2" = {};
+      "3" = {};
+      "4" = {};
+      "5" = {};
+      "6" = {};
+      "7" = {};
+      "8" = {};
+      "9" = {};
     };
 
     outputs."eDP-1" = {
       scale = 2;
-    }; 
+    };
 
     input = {
       keyboard.xkb = {
         layout = "us, ru";
         options = "grp:caps_toggle";
       };
-      
+
       touchpad = {
-        tap = true; 
+        tap = true;
         dwt = true;
         natural-scroll = true;
         accel-profile = "adaptive";
       };
-      
+
       mouse = {
         accel-profile = "flat";
       };
     };
 
     layout = {
-      gaps = 12;      
+      gaps = 12;
       center-focused-column = "never";
-      default-column-width = { proportion = 0.5; }; 
+      default-column-width = {proportion = 0.5;};
       focus-ring = {
         enable = true;
-        width = 3; 
+        width = 3;
       };
 
       border = {
@@ -52,28 +50,27 @@
       };
     };
 
-    spawn-at-startup =[      
-      { command = [ "noctalia-shell" ]; }
-      { command = ["xwayland-satellite"]; }
-      { command = [ "systemctl" "--user" "start" "hyprpolkitagent" ]; }
+    spawn-at-startup = [
+      {command = ["noctalia-shell"];}
+      {command = ["xwayland-satellite"];}
+      {command = ["systemctl" "--user" "start" "hyprpolkitagent"];}
     ];
-    window-rules =[
+    window-rules = [
       {
-        matches =[
-          { app-id = "^pavucontrol$"; }
-          { app-id = "^nm-connection-editor$"; }
-          { app-id = "^blueman-manager$"; }
-          { title = "^Open File$"; }
+        matches = [
+          {app-id = "^pavucontrol$";}
+          {app-id = "^nm-connection-editor$";}
+          {app-id = "^blueman-manager$";}
+          {title = "^Open File$";}
         ];
         open-floating = true;
       }
     ];
-    };
 
-    programs.niri.settings.binds = {
+    binds = {
       "Mod+T".action.spawn = "ghostty";
-      "Mod+S".action.spawn =[ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
-      "Mod+Escape".action.spawn =[ "noctalia-shell" "ipc" "call" "lockScreen" "lock" ];
+      "Mod+S".action.spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
+      "Mod+Escape".action.spawn = ["noctalia-shell" "ipc" "call" "lockScreen" "lock"];
       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
       "Mod+Shift+E".action.quit = {};
       "Mod+Shift+P".action.power-off-monitors = {};
@@ -159,13 +156,16 @@
       "Mod+Shift+8".action.move-column-to-workspace = 8;
       "Mod+Shift+9".action.move-column-to-workspace = 9;
 
-      "XF86AudioRaiseVolume".action.spawn =[ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" ];
-      "XF86AudioLowerVolume".action.spawn =[ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
-      "XF86AudioMute".action.spawn =[ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ];
-      "XF86AudioMicMute".action.spawn =[ "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle" ];
+      "XF86AudioRaiseVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
+      "XF86AudioLowerVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"];
+      "XF86AudioMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
+      "XF86AudioMicMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
 
-      "Print".action.screenshot = {};
-      "Ctrl+Print".action.screenshot-screen = {};
-      "Alt+Print".action.screenshot-window = {};
+      "Ctrl+Home".action.spawn = "grim -g \"$(slurp)\" - | wl-copy";
+      "Alt+Home".action.spawn = "grim -o \"$(slurp -w)\" - | wl-copy";
+      "Shift+Home".action.spawn = "grim - | wl-copy";
+
+      "Ctrl+S".action.spawn = "mkdir -p ~/Pictures && wl-paste --type image/png > ~/Pictures/Screenshot-$(date +%Y-%m-%d_%H-%M-%S).png";
     };
+  };
 }

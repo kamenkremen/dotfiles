@@ -1,12 +1,11 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   #boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # nix
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   # locale
   time.timeZone = "Europe/Moscow";
 
@@ -27,7 +26,8 @@
     layout = "us";
     variant = "";
   };
-    
+
+  fonts.enableDefaultPackages = true;
   # networking
   networking.hostName = "nixsos";
   networking.networkmanager.enable = true;
@@ -36,13 +36,13 @@
   users.users.kamen = {
     isNormalUser = true;
     description = "kamen";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
   };
 
   # fonts
   fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
+    dejavu_fonts
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
@@ -53,13 +53,17 @@
     fira-code-symbols
     mplus-outline-fonts.githubRelease
     dina-font
-    proggyfonts 
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.hack
+    proggyfonts
   ];
 
-
   # swap file
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 8*1024; # 8 GB
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024; # 8 GB
+    }
+  ];
 }
