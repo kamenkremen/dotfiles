@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./nfv
+    ./nvf
     ./scripts
     ./hyprland
     ./stylix.nix

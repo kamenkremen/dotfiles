@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nfv = {
+    nvf = {
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -38,7 +38,7 @@
     home-manager,
     noctalia,
     niri,
-    nfv,
+    nvf,
     stylix,
     ...
   } @ inputs: let
@@ -55,8 +55,8 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
-            home-manager.extraSpecialArgs = {inherit inputs nfv nixpkgs-stable noctalia;};
-            home-manager.users.kamen = import ./home-manager/home.nix;
+            home-manager.extraSpecialArgs = {inherit inputs nvf nixpkgs-stable noctalia;};
+            home-manager.users.kamen = import ./home-manager/users/kamen.nix;
             home-manager.backupFileExtension = "backup";
           }
           niri.nixosModules.niri
@@ -64,6 +64,26 @@
           ./nixos-packages/shared
         ];
       };
+      thinkpad = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs;};
+
+        modules = [
+          stylix.nixosModules.stylix
+          {nixpkgs.config.allowUnfree = true;}
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.extraSpecialArgs = {inherit inputs nvf nixpkgs-stable noctalia;};
+            home-manager.users.ivanz = import ./home-manager/users/ivanz.nix;
+            home-manager.backupFileExtension = "backup";
+          }
+          niri.nixosModules.niri
+          ./nixos-packages/hosts/thinkpad
+          ./nixos-packages/shared
+        ];
+      };
+
     };
   };
 }
