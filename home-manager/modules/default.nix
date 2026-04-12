@@ -1,7 +1,6 @@
-{...}:
-{
+{...}: {
   imports = [
-    ./nixvim
+    ./nfv
     ./scripts
     ./hyprland
     ./stylix.nix

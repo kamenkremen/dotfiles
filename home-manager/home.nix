@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, nixvim, stylix, nixpkgs-stable, ... }:
+{ config, pkgs, inputs, lib, nfv, stylix, nixpkgs-stable, ... }:
 let
   pkgs-stable = import inputs.nixpkgs-stable {
     system = pkgs.system;
@@ -8,8 +8,7 @@ in
 {
   disabledModules = [ "programs/niri.nix" ];
   imports = [
-    
-    nixvim.homeModules.nixvim
+    nfv.homeManagerModules.nvf
     ./modules
   ];
 

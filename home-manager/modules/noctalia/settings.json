@@ -4,7 +4,7 @@
     "barType": "simple",
     "position": "top",
     "monitors": [],
-    "density": "default",
+    "density": "compact",
     "showOutline": false,
     "showCapsule": true,
     "capsuleOpacity": 1,
@@ -52,28 +52,11 @@
           "showLoadAverage": false,
           "showMemoryAsPercent": false,
           "showMemoryUsage": true,
-          "showNetworkStats": false,
+          "showNetworkStats": true,
           "showSwapUsage": false,
           "textColor": "none",
           "useMonospaceFont": true,
           "usePadding": false
-        },
-        {
-          "colorizeIcons": false,
-          "hideMode": "hidden",
-          "id": "ActiveWindow",
-          "maxWidth": 145,
-          "scrollingMode": "hover",
-          "showIcon": true,
-          "showText": true,
-          "textColor": "none",
-          "useFixedWidth": false
-        },
-        {
-          "colorName": "primary",
-          "hideWhenIdle": false,
-          "id": "AudioVisualizer",
-          "width": 100
         },
         {
           "compactMode": false,
@@ -86,10 +69,33 @@
           "showAlbumArt": true,
           "showArtistFirst": true,
           "showProgressRing": true,
-          "showVisualizer": false,
+          "showVisualizer": true,
           "textColor": "none",
           "useFixedWidth": false,
           "visualizerType": "linear"
+        },
+        {
+          "defaultSettings": {
+            "barHost": "worst",
+            "colorCritical": "#ff5555",
+            "colorGood": "#00ff7f",
+            "colorWarning": "#f1fa8c",
+            "hosts": [
+              {
+                "address": "1.1.1.1",
+                "name": "Cloudflare DNS"
+              },
+              {
+                "address": "8.8.8.8",
+                "name": "Google DNS"
+              }
+            ],
+            "intervalSeconds": 5,
+            "showHostName": true,
+            "thresholdGood": 20,
+            "thresholdWarning": 70
+          },
+          "id": "plugin:latency-monitor"
         }
       ],
       "center": [
@@ -137,7 +143,7 @@
           "deviceNativePath": "__default__",
           "displayMode": "graphic-clean",
           "hideIfIdle": false,
-          "hideIfNotDetected": true,
+          "hideIfNotDetected": false,
           "id": "Battery",
           "showNoctaliaPerformance": false,
           "showPowerProfiles": false
@@ -257,6 +263,26 @@
         },
         {
           "id": "plugin:catwalk"
+        },
+        {
+          "colorizeDistroLogo": false,
+          "colorizeSystemIcon": "none",
+          "customIconPath": "",
+          "enableColorization": false,
+          "icon": "noctalia",
+          "id": "ControlCenter",
+          "useDistroLogo": false
+        },
+        {
+          "iconColor": "none",
+          "id": "KeepAwake",
+          "textColor": "none"
+        },
+        {
+          "displayMode": "onhover",
+          "iconColor": "none",
+          "id": "Network",
+          "textColor": "none"
         }
       ]
     },
@@ -713,7 +739,7 @@
   },
   "colorSchemes": {
     "useWallpaperColors": false,
-    "predefinedScheme": "Noctalia (default)",
+    "predefinedScheme": "Gruvbox",
     "darkMode": true,
     "schedulingMode": "off",
     "manualSunrise": "06:30",
