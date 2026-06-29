@@ -1,0 +1,324 @@
+[audio]
+enable_overdrive = false
+enable_sounds = false
+sound_volume = 0.5
+
+[backdrop]
+blur_intensity = 0.0
+enabled = true
+tint_intensity = 0.0
+
+[bar.main]
+background_opacity = 1.0
+border_width = 0.0
+capsule = true
+capsule_opacity = 1.0
+center = [ "workspaces" ]
+end = [
+    "tray",
+    "notifications",
+    "battery",
+    "output_volume",
+    "brightness",
+    "control-center",
+    "caffeine",
+    "network",
+    "media",
+    "bluetooth"
+]
+font_family = "Crisp"
+margin_edge = 4
+margin_ends = 4
+padding = 2
+position = "top"
+radius = 12
+scale = 1.0
+shadow = true
+start = [ "clock", "cpu", "temp", "ram", "network_rx", "network_tx" ]
+thickness = 27
+widget_spacing = 6
+
+[brightness]
+enable_ddcutil = false
+
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "wallpaper"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "power_profile"
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[desktop_widgets]
+enabled = false
+
+[dock]
+active_monitor_only = true
+auto_hide = true
+background_opacity = 1.0
+enabled = true
+icon_size = 48
+launcher_position = "none"
+margin_edge = 8
+pinned = []
+position = "bottom"
+radius = 16
+reserve_space = false
+shadow = true
+
+[idle]
+pre_action_fade_seconds = 5.0
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 660
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 1800
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 600
+
+[keybinds]
+cancel = [ "escape" ]
+down = [ "down" ]
+left = [ "left" ]
+right = [ "right" ]
+up = [ "up" ]
+validate = [ "return", "kp_enter" ]
+
+[location]
+address = ""
+auto_locate = false
+sunrise = "06:30"
+sunset = "18:30"
+
+[lockscreen]
+blur_intensity = 0.0
+blurred_desktop = false
+enabled = true
+monitors = []
+tint_intensity = 0.0
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 640.0
+    cy = 681.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_login_button = true
+
+[nightlight]
+enabled = false
+force = false
+temperature_day = 6500
+temperature_night = 4000
+
+[notification]
+background_opacity = 1.0
+enable_daemon = true
+layer = "overlay"
+monitors = []
+position = "top_right"
+show_actions = true
+show_app_name = true
+
+[osd]
+background_opacity = 1.0
+monitors = []
+orientation = "horizontal"
+position = "top_right"
+
+[plugins]
+enabled = [ "noctalia/bongocat", "noctalia/screen_recorder" ]
+
+[shell]
+app_icon_colorize = true
+avatar_path = "/home/kamen/.face"
+clipboard_enabled = false
+corner_radius_scale = 1.0
+font_family = "DejaVu Sans"
+settings_show_advanced = false
+show_location = true
+telemetry_enabled = false
+ui_scale = 1.0
+
+    [shell.animation]
+    enabled = true
+    speed = 1.0
+
+    [shell.panel]
+    borders = true
+    control_center_placement = "attached"
+    launcher_categories = true
+    launcher_compact = false
+    launcher_placement = "centered"
+    launcher_session_search = true
+    launcher_show_icons = true
+    launcher_sort_by_usage = true
+    open_near_click_control_center = true
+    session_placement = "centered"
+    shadow = true
+    transparency_mode = "solid"
+    wallpaper_placement = "attached"
+
+    [shell.shadow]
+    alpha = 0.55000000000000004
+    direction = "down_right"
+
+[system.monitor]
+cpu_poll_seconds = 2.0
+cpu_temp_activity_threshold = 80
+cpu_temp_critical_threshold = 90
+cpu_usage_activity_threshold = 80
+cpu_usage_critical_threshold = 90
+disk_pct_activity_threshold = 80
+disk_pct_critical_threshold = 90
+disk_poll_seconds = 10.0
+enabled = true
+gpu_poll_seconds = 5.0
+gpu_temp_activity_threshold = 80
+gpu_temp_critical_threshold = 90
+memory_poll_seconds = 2.0
+network_poll_seconds = 3.0
+ram_pct_activity_threshold = 80
+ram_pct_critical_threshold = 90
+swap_pct_activity_threshold = 80
+swap_pct_critical_threshold = 90
+
+[theme]
+builtin = "Gruvbox"
+mode = "dark"
+source = "builtin"
+
+    [theme.templates]
+    enable_builtin_templates = false
+    enable_community_templates = false
+
+[wallpaper]
+directory = "/home/kamen/Pictures/Wallpapers"
+edge_smoothness = 0.050000000000000003
+enabled = true
+fill_color = "#000000"
+fill_mode = "crop"
+transition = [ "fade", "disc", "stripes", "wipe", "honeycomb" ]
+transition_duration = 1500
+transition_on_startup = true
+
+    [wallpaper.automation]
+    enabled = false
+
+    [wallpaper.default]
+    path = "/home/kamen/dotfiles/home-manager/modules/wallpapers/gruvbible.png"
+
+    [wallpaper.last]
+    path = "/home/kamen/dotfiles/home-manager/modules/wallpapers/gruvbible.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/kamen/dotfiles/home-manager/modules/wallpapers/gruvbible.png"
+
+[weather]
+effects = true
+enabled = true
+refresh_minutes = 30
+unit = "celsius"
+
+[widget.battery]
+display_mode = "graphic"
+show_label = false
+
+[widget.brightness]
+show_label = false
+
+[widget.clock]
+format = "{:%H:%M %a, %b %d}"
+tooltip_format = "{:%H:%M %a, %b %d}"
+
+[widget.control-center]
+custom_image_colorize = false
+glyph = "noctalia"
+
+[widget.cpu]
+display = "text"
+show_label = true
+
+[widget.media]
+art_size = 16
+max_length = 145
+min_length = 80
+title_scroll = "hover"
+
+[widget.network]
+show_label = false
+
+[widget.network_rx]
+display = "text"
+show_label = true
+
+[widget.network_tx]
+display = "text"
+show_label = true
+
+[widget.notifications]
+hide_when_no_unread = false
+
+[widget.output_volume]
+show_label = false
+
+[widget.ram]
+display = "text"
+show_label = true
+
+[widget.temp]
+display = "text"
+show_label = true
+
+[widget.tray]
+drawer = true
+hidden = []
+pinned = []
+
+[widget.workspaces]
+display = "none"
+empty_color = "secondary"
+focused_color = "primary"
+hide_when_empty = false
+labels_only_when_occupied = true
+max_label_chars = 2
+minimal = false
+occupied_color = "secondary"
+pill_scale = 0.59999999999999998

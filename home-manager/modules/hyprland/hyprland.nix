@@ -99,7 +99,7 @@
       ];
 
       "exec-once" = [
-        "noctalia-shell &"
+        "noctalia &"
         "nm-applet"
       ];
       bind = [

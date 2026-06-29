@@ -3,6 +3,12 @@
   lib,
   ...
 }: {
+  home.file.".clang-format".text = ''
+    BasedOnStyle: LLVM
+    IndentWidth: 4
+    TabWidth: 4
+    UseTab: Never
+  '';
   programs.nvf = {
     enable = true;
 

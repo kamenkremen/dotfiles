@@ -2,8 +2,8 @@
   imports = [
     noctalia.homeModules.default
   ];
-  programs.noctalia-shell = {
+  programs.noctalia = {
     enable = true;
-    settings = builtins.fromJSON (builtins.readFile ./settings.json);
+    settings = ./settings.toml;
   };
 }

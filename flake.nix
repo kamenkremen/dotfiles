@@ -29,6 +29,8 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-claude-code.url = "github:ryoppippi/nix-claude-code";
   };
 
   outputs = {
@@ -40,6 +42,7 @@
     niri,
     nvf,
     stylix,
+    nix-claude-code,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -50,6 +53,7 @@
         specialArgs = {inherit inputs;};
 
         modules = [
+          {nixpkgs.overlays = [nix-claude-code.overlays.default];}
           stylix.nixosModules.stylix
           {nixpkgs.config.allowUnfree = true;}
           home-manager.nixosModules.home-manager

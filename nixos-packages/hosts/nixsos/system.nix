@@ -59,6 +59,8 @@
     proggyfonts
   ];
 
+  environment.systemPackages = [pkgs.claude-code];
+
   # swap file
   swapDevices = [
     {

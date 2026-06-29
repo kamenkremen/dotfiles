@@ -22,7 +22,9 @@
         "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
       };
       niri = {
-        default =[ "gnome" "gtk" ];
+        default = [ "gnome" "gtk" ];
+        "org.freedesktop.impl.portal.Screencast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
       };
     };
   };

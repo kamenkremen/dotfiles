@@ -51,7 +51,7 @@
     };
 
     spawn-at-startup = [
-      {command = ["noctalia-shell"];}
+      {command = ["noctalia"];}
       {command = ["xwayland-satellite"];}
       {command = ["systemctl" "--user" "start" "hyprpolkitagent"];}
     ];
@@ -69,8 +69,8 @@
 
     binds = {
       "Mod+T".action.spawn = "ghostty";
-      "Mod+S".action.spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
-      "Mod+Escape".action.spawn = ["noctalia-shell" "ipc" "call" "lockScreen" "lock"];
+      "Mod+S".action.spawn = ["noctalia" "msg" "panel-toggle" "launcher"];
+      "Mod+Escape".action.spawn = ["noctalia" "msg" "session" "lock"];
       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
       "Mod+Shift+E".action.quit = {};
       "Mod+Shift+P".action.power-off-monitors = {};
@@ -161,11 +161,11 @@
       "XF86AudioMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
       "XF86AudioMicMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
 
-      "Ctrl+Home".action.spawn = "grim -g \"$(slurp)\" - | wl-copy";
-      "Alt+Home".action.spawn = "grim -o \"$(slurp -w)\" - | wl-copy";
-      "Shift+Home".action.spawn = "grim - | wl-copy";
+      "Ctrl+home".action.spawn = ["bash" "-c" "grim -g \"$(slurp)\" - | wl-copy"];
+      "Alt+home".action.spawn = ["bash" "-c" "grim -o \"$(slurp -w)\" - | wl-copy"];
+      "Shift+home".action.spawn = ["bash" "-c" "grim - | wl-copy"];
 
-      "Ctrl+S".action.spawn = "mkdir -p ~/Pictures && wl-paste --type image/png > ~/Pictures/Screenshot-$(date +%Y-%m-%d_%H-%M-%S).png";
+      "Ctrl+S".action.spawn = ["bash" "-c" "mkdir -p ~/Pictures && wl-paste --type image/png > ~/Pictures/Screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"];
     };
   };
 }
