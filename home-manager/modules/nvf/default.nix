@@ -80,6 +80,9 @@
 
       treesitter = {
         enable = true;
+        grammars = with pkgs.vimPlugins.nvim-treesitter.grammarPlugins; [
+          latex
+        ];
       };
 
       autopairs.nvim-autopairs = {
@@ -144,6 +147,13 @@
           };
         };
       };
+      utility = {
+        diffview-nvim.enable = true;
+        preview.markdownPreview = {
+          enable = true;
+          autoClose = false;
+        };
+      };
 
       snippets.luasnip.enable = true;
 
@@ -202,6 +212,7 @@
         markdown = {
           enable = true;
           lsp.enable = true;
+          extensions.markview-nvim.enable = true;
         };
 
         html = {

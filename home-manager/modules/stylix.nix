@@ -18,7 +18,7 @@
         profileNames = ["default"];
       };
       # i want to configure widgets :^(
-      noctalia-shell.enable = false;
+      noctalia.enable = false;
     };
     cursor = {
       package = pkgs.bibata-cursors;

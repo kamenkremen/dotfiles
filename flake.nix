@@ -31,6 +31,8 @@
     };
 
     nix-claude-code.url = "github:ryoppippi/nix-claude-code";
+
+    codex-desktop-linux.url = "github:ilysenko/codex-desktop-linux";
   };
 
   outputs = {
@@ -54,6 +56,8 @@
 
         modules = [
           {nixpkgs.overlays = [nix-claude-code.overlays.default];}
+          inputs.codex-desktop-linux.nixosModules.default
+          {programs.codexDesktopLinux.enable = true;}
           stylix.nixosModules.stylix
           {nixpkgs.config.allowUnfree = true;}
           home-manager.nixosModules.home-manager

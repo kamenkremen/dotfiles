@@ -32,7 +32,9 @@ in {
 
   home.packages = with pkgs; [
     # dev / utils
-    opencode
+    #opencode
+    kdePackages.ghostwriter
+    pandoc
     spotify
     xwayland-satellite
     hyprpolkitagent
@@ -64,7 +66,7 @@ in {
     telegram-desktop
     vesktop
     discord
-    revolt-desktop
+    #revolt-desktop
     kdePackages.okular
     zathura
     libreoffice
@@ -90,7 +92,7 @@ in {
     prismlauncher
     lunar-client
 
-    heroic
+    #heroic
 
     # wayland / desktop
     wl-clipboard
@@ -102,7 +104,7 @@ in {
     gpu-screen-recorder
 
     # printing/latex/typst
-    texlive.combined.scheme-full
+    #texlive.combined.scheme-full
     typst
     tinymist
 
