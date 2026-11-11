@@ -6,17 +6,13 @@
   wayland.windowManager.hyprland.systemd.variables = ["--all"];
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
 
     settings = {
       "$mainMod" = "SUPER";
       "$terminal" = "ghostty";
       "$fileManager" = "dolphin";
       "$menu" = "rofi --show drun";
-
-      monitor = [
-        "eDP-1,preferred,auto,auto"
-        ",preferred,auto,1,mirror,eDP-1"
-      ];
 
       env = [
         ("XCURSOR_SIZE," + builtins.toString 24) #config.stylix.cursor.size)
@@ -90,13 +86,6 @@
           natural_scroll = false;
         };
       };
-
-      device = [
-        {
-          name = "epic-mouse-v1";
-          sensitivity = "-0.5";
-        }
-      ];
 
       "exec-once" = [
         "noctalia &"

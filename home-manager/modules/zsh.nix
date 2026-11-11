@@ -16,10 +16,13 @@
       ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
       unset SSH_ASKPASS
       update() {
-        local flake_dir="$HOME/dotfiles"
-        local target="''${1:-$(hostname)}"
-        echo "Rebuilding NixOS for host: $target"
-        sudo nixos-rebuild switch --flake "$flake_dir#$target"
+        local flake_dir="''${NIXOS_CONFIG_DIR:-$HOME/nixos-configs/$(hostname)}"
+        if [[ ! -f "$flake_dir/flake.nix" ]]; then
+          print -u2 "No flake.nix in $flake_dir; set NIXOS_CONFIG_DIR to your machine configuration."
+          return 1
+        fi
+        echo "Rebuilding NixOS from: $flake_dir#local"
+        sudo nixos-rebuild switch --flake "$flake_dir#local" "$@"
       }
     '';
   };

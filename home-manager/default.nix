@@ -1,29 +1,16 @@
 {
-  config,
   pkgs,
   inputs,
-  lib,
-  nvf,
-  stylix,
-  nixpkgs-stable,
   ...
-}: let
-  pkgs-stable = import inputs.nixpkgs-stable {
-    system = pkgs.system;
-    config.allowUnfree = true;
-  };
-in {
+}: {
   disabledModules = ["programs/niri.nix"];
   imports = [
-    nvf.homeManagerModules.nvf
-    ../modules
+    inputs.nvf.homeManagerModules.nvf
+    ./modules
   ];
-
-  home.stateVersion = "24.11";
 
   fonts.fontconfig.enable = true;
 
-  programs.zsh.enable = true;
   #programs.throne.enable = true;
   #programs.throne.tunMode.enable = true;
 
@@ -68,7 +55,6 @@ in {
     discord
     #revolt-desktop
     kdePackages.okular
-    zathura
     libreoffice
     gimp
     google-chrome

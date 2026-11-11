@@ -13,10 +13,6 @@
       "9" = {};
     };
 
-    outputs."eDP-1" = {
-      scale = 2;
-    };
-
     input = {
       keyboard.xkb = {
         layout = "us, ru";

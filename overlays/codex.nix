@@ -1,51 +1,51 @@
-final: prev: let
-  version = "0.153.4";
+_final: prev: let
+  version = "0.167.0";
 
   sources = {
     x86_64-linux = {
-      codex = {
-        url = "https://github.com/openai/codex/releases/download/rust-v${version}/codex-x86_64-unknown-linux-musl.tar.gz";
-        hash = "sha256-9HlCTsoJJITcQNh64oxE9MxAI0pgBF1hMeSTgA2BSjA=";
-      };
-
-      host = {
-        url = "https://github.com/openai/codex/releases/download/rust-v${version}/codex-code-mode-host-x86_64-unknown-linux-musl.tar.gz";
-        hash = "sha256-+VgwqGlZCVdmS7/Ge8ywh3OAa2k2cLrxWQgXb4m0zTE=";
-      };
+      url = "https://github.com/openai/codex/releases/download/rust-v${version}/codex-package-x86_64-unknown-linux-musl.tar.zst";
+      hash = "sha256-n2e4hoixQ1kH4hSIWI/yAR/f8n5YLS05XohVv1Z6jP8=";
     };
   };
 
   source =
     sources.${prev.stdenv.hostPlatform.system}
         or (throw "Unsupported Codex platform: ${prev.stdenv.hostPlatform.system}");
-
-  codexSrc = prev.fetchurl source.codex;
-  hostSrc = prev.fetchurl source.host;
 in {
   codex = prev.stdenvNoCC.mkDerivation {
     pname = "codex";
     inherit version;
+    src = prev.fetchurl source;
     dontUnpack = true;
+    dontBuild = true;
+    dontStrip = true;
+
+    nativeBuildInputs = [prev.autoPatchelfHook prev.zstd];
+    # The CLI and its executors use musl; the bundled voice helper uses glibc.
+    buildInputs = [(prev.lib.getLib prev.stdenv.cc.libc)];
 
     installPhase = ''
       runHook preInstall
-      mkdir -p "$out/bin"
-
-      codex_bin="$(tar -tzf "${codexSrc}" | head -n1)"
-      host_bin="$(tar -tzf "${hostSrc}" | head -n1)"
-
-      tar -xOzf "${codexSrc}" "$codex_bin" > "$out/bin/codex"
-      tar -xOzf "${hostSrc}" "$host_bin" > "$out/bin/codex-code-mode-host"
-
-      chmod 0755 "$out/bin/codex" "$out/bin/codex-code-mode-host"
+      mkdir -p "$out"
+      # Preserve the package layout so Codex can discover every helper and resource.
+      tar --zstd -xf "$src" -C "$out"
+      chmod -R u+w "$out"
       runHook postInstall
     '';
+
+    preFixup = ''
+      addAutoPatchelfSearchPath "$out/codex-resources/voice/lib"
+    '';
+
+    doInstallCheck = true;
+    nativeInstallCheckInputs = [prev.versionCheckHook];
 
     meta = {
       description = "OpenAI Codex CLI";
       homepage = "https://github.com/openai/codex";
       license = prev.lib.licenses.asl20;
       mainProgram = "codex";
+      platforms = builtins.attrNames sources;
     };
   };
 }

@@ -1,5 +1,6 @@
-{pkgs, ...}: {
+{
   imports = [
+    ./base.nix
     ./docker.nix
     ./stylix.nix
     ./services
@@ -9,5 +10,4 @@
   nixpkgs.overlays = [
     (import ../../overlays/codex.nix)
   ];
-  system.stateVersion = "24.11";
 }

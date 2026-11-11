@@ -1,15 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   #boot
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = lib.mkDefault true;
+  boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
 
   # nix
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # locale
-  time.timeZone = "Europe/Moscow";
+  time.timeZone = lib.mkDefault "Europe/Moscow";
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ru_RU.UTF-8";
     LC_IDENTIFICATION = "ru_RU.UTF-8";
@@ -29,16 +33,7 @@
 
   fonts.enableDefaultPackages = true;
   # networking
-  networking.hostName = "thinkpad";
   networking.networkmanager.enable = true;
-
-  # users
-  users.users.ivanz = {
-    isNormalUser = true;
-    description = "ivanz";
-    extraGroups = ["networkmanager" "wheel"];
-    shell = pkgs.zsh;
-  };
 
   # fonts
   fonts.packages = with pkgs; [

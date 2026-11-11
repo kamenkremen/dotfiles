@@ -115,33 +115,6 @@ enabled = true
 monitors = []
 tint_intensity = 0.0
 
-[lockscreen_widgets]
-enabled = false
-schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1" ]
-
-    [lockscreen_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
-
-    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 70.0
-    box_width = 400.0
-    cx = 640.0
-    cy = 681.0
-    output = "eDP-1"
-    rotation = 0.0
-    type = "login_box"
-
-        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
-        background_opacity = 0.88
-        background_radius = 12.0
-        input_opacity = 1.0
-        input_radius = 6.0
-        show_login_button = true
-
 [nightlight]
 enabled = false
 force = false
@@ -168,7 +141,6 @@ enabled = [ "noctalia/bongocat", "noctalia/screen_recorder" ]
 
 [shell]
 app_icon_colorize = true
-avatar_path = "/home/kamen/.face"
 clipboard_enabled = false
 corner_radius_scale = 1.0
 font_family = "DejaVu Sans"
@@ -230,7 +202,6 @@ source = "builtin"
     enable_community_templates = false
 
 [wallpaper]
-directory = "/home/kamen/Pictures/Wallpapers"
 edge_smoothness = 0.050000000000000003
 enabled = true
 fill_color = "#000000"
@@ -241,15 +212,6 @@ transition_on_startup = true
 
     [wallpaper.automation]
     enabled = false
-
-    [wallpaper.default]
-    path = "/home/kamen/dotfiles/home-manager/modules/wallpapers/gruvbible.png"
-
-    [wallpaper.last]
-    path = "/home/kamen/dotfiles/home-manager/modules/wallpapers/gruvbible.png"
-
-    [wallpaper.monitors.eDP-1]
-    path = "/home/kamen/dotfiles/home-manager/modules/wallpapers/gruvbible.png"
 
 [weather]
 effects = true

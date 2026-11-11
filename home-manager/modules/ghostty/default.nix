@@ -1,12 +1,11 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
   ...
 }: let
   pkgs-stable = import inputs.nixpkgs-stable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
 in {
@@ -26,10 +25,8 @@ in {
       custom-shader-animation = true;
     };
   };
-  xdg.configFile = lib.mkMerge [
-    {
-      "ghostty/shaders/ripple_cursor.glsl".source = ./ripple_cursor.glsl;
-      "ghostty/shaders/cursor_sweep.glsl".source = ./cursor_sweep.glsl;
-    }
-  ];
+  xdg.configFile = {
+    "ghostty/shaders/ripple_cursor.glsl".source = ./ripple_cursor.glsl;
+    "ghostty/shaders/cursor_sweep.glsl".source = ./cursor_sweep.glsl;
+  };
 }

@@ -1,5 +1,5 @@
 {
-  description = "NixOS config for nixsos with Home Manager";
+  description = "Reusable NixOS desktop configuration with Home Manager";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -29,69 +29,31 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-claude-code.url = "github:ryoppippi/nix-claude-code";
-
-    codex-desktop-linux.url = "github:ilysenko/codex-desktop-linux";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    noctalia,
-    niri,
-    nvf,
-    stylix,
-    nix-claude-code,
-    ...
-  } @ inputs: let
+  outputs = inputs: let
     system = "x86_64-linux";
+    pkgs = import inputs.nixpkgs {inherit system;};
+    initMachine = pkgs.writeShellApplication {
+      name = "init-machine";
+      runtimeInputs = [pkgs.coreutils pkgs.gnugrep pkgs.nix];
+      text =
+        ''
+          readonly template_dir=${./templates/machine}
+        ''
+        + builtins.readFile ./scripts/init-machine.sh;
+    };
   in {
-    nixosConfigurations = {
-      nixsos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-
-        modules = [
-          {nixpkgs.overlays = [nix-claude-code.overlays.default];}
-          inputs.codex-desktop-linux.nixosModules.default
-          {programs.codexDesktopLinux.enable = true;}
-          stylix.nixosModules.stylix
-          {nixpkgs.config.allowUnfree = true;}
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.extraSpecialArgs = {inherit inputs nvf nixpkgs-stable noctalia;};
-            home-manager.users.kamen = import ./home-manager/users/kamen.nix;
-            home-manager.backupFileExtension = "backup";
-          }
-          niri.nixosModules.niri
-          ./nixos-packages/hosts/nixsos
-          ./nixos-packages/shared
-        ];
-      };
-      thinkpad = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-
-        modules = [
-          stylix.nixosModules.stylix
-          {nixpkgs.config.allowUnfree = true;}
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.extraSpecialArgs = {inherit inputs nvf nixpkgs-stable noctalia;};
-            home-manager.users.ivanz = import ./home-manager/users/ivanz.nix;
-            home-manager.backupFileExtension = "backup";
-          }
-          niri.nixosModules.niri
-          ./nixos-packages/hosts/thinkpad
-          ./nixos-packages/shared
-        ];
-      };
-
+    lib.mkHost = import ./lib/mk-host.nix {inherit inputs;};
+    packages.${system}.init-machine = initMachine;
+    apps.${system}.init-machine = {
+      type = "app";
+      program = "${initMachine}/bin/init-machine";
+      meta.description = "Prepare a standalone configuration for this NixOS machine";
+    };
+    templates.machine = {
+      path = ./templates/machine;
+      description = "A standalone NixOS machine using these dotfiles";
     };
   };
 }
